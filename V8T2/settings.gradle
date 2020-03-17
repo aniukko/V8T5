@@ -1,0 +1,2 @@
+rootProject.name='V8T2'
+include ':app'
