@@ -34,34 +34,36 @@ public class MainActivity extends AppCompatActivity {
     public void save (View v) {
         try {
             String file = fileName.getText().toString();
-            InputStream ins = context.openFileInput(file);
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(ins));
-            String a = "";
-            while ((a = br.readLine()) != null) {
-                writeText.setText(a);
-            }
-            ins.close();
-        } catch (IOException e) {
-            Log.e("IOException", "Error");
-        } finally {
-            text.setText("Luettu");
-        }
-    }
-
-    public void load (View v) {
-        try {
-            String file = fileName.getText().toString();
             OutputStreamWriter osw = new OutputStreamWriter(context.openFileOutput(file, Context.MODE_PRIVATE));
             String w = writeText.getText().toString();
             writeText.setText(w);
+            text.setText(w);
             osw.write(w);
             osw.close();
 
         } catch (IOException e) {
             Log.e("IOException", "Virhe syötteessä");
         } finally {
-            text.setText("Kirjoitettu");
+            System.out.println("Kirjoitettu");
+        }
+    }
+
+    public void load (View v) {
+        try {
+            String file = fileName.getText().toString();
+            InputStream ins = context.openFileInput(file);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(ins));
+            String a = "";
+            while ((a = br.readLine()) != null) {
+                writeText.setText(a);
+                text.setText(a);
+            }
+            ins.close();
+        } catch (IOException e) {
+            Log.e("IOException", "Error");
+        } finally {
+            System.out.println("Luettu");
         }
     }
 }
