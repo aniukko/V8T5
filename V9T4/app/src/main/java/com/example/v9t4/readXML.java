@@ -24,7 +24,6 @@ public class readXML {
     public static readXML getInstance() {
         return read;
     }
-
     private ArrayList<Theatre> theatres = new ArrayList<Theatre>();
 
     public ArrayList<Theatre> theatreXML () {
