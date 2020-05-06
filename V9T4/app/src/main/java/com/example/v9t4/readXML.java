@@ -83,7 +83,7 @@ public class readXML {
 
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            String url = "https://www.finnkino.fi/xml/Schedule/?area=" + id + "&dt" + chosenD;
+            String url = "https://www.finnkino.fi/xml/Schedule/?area=" + id + "&dt=" + chosenD;
             Document doc2 = builder.parse(url);
             doc2.getDocumentElement().normalize();
 
@@ -104,21 +104,20 @@ public class readXML {
                     String[] separated2 = time.split(":");
                     time2 = separated2[0] + ":" + separated2[1];
 
-                    if (chosenS == null || chosenE == null) {
+                    if (chosenS.equals("") || chosenE.equals("")) {
                         result = "Theater: " + theater + " - Title: " + title + " - Show starts: " + time2;
                         info.add(result);
                         System.out.println(result);
-                        break;
                     }
                     else {
                         Date rt = sdf.parse(time2);
                         Date st = sdf.parse(chosenS);
                         Date et = sdf.parse(chosenE);
-
-                        if ((rt.compareTo(st) == 1 || rt.compareTo(st) == 0) && (rt.compareTo(et) == -1 || rt.compareTo(et) == 0)) {
+                        if ((rt.compareTo(st) > 0 || rt.compareTo(st) == 0) && (rt.compareTo(et) < 0 || rt.compareTo(et) == 0)) {
                             result = "Theater: " + theater + " - Title: " + title + " - Show starts: " + time2;
                             info.add(result);
                             System.out.println(result);
+
                         }
                     }
                 }

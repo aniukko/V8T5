@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chosenTheatre = parent.getItemAtPosition(position).toString();
+                System.out.println(chosenTheatre);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

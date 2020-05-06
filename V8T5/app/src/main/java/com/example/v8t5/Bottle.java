@@ -38,6 +38,6 @@ public class Bottle {
 
     @Override
     public String toString() {
-        return name;
+        return name + " - " + size + "l";
     }
 }
